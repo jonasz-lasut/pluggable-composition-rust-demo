@@ -1,0 +1,32 @@
+---
+# Functions for `crossplane composition render`, used by ../render.sh instead of
+# project mode. Names match the functionRefs in apis/webapps/composition.yaml.
+# The Development targets must match the ports in ../render.sh
+# (compose-webapp) and ../function-wasm.sh.
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: jonasz-lasut-xp-rust-democompose-webapp
+  annotations:
+    render.crossplane.io/runtime: Development
+    render.crossplane.io/runtime-development-target: localhost:9443
+spec:
+  package: ghcr.io/jonasz-lasut/xp-rust-demo_compose-webapp
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: jonasz-lasut-function-wasm
+  annotations:
+    render.crossplane.io/runtime: Development
+    render.crossplane.io/runtime-development-target: localhost:9444
+spec:
+  package: xpkg.upbound.io/jonasz-lasut/function-wasm:v0.5.0
+---
+# Runs in Docker, a fresh container per render.
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: crossplane-contrib-function-auto-ready
+spec:
+  package: xpkg.crossplane.io/crossplane-contrib/function-auto-ready:v0.7.0

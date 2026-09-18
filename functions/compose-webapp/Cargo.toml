@@ -1,0 +1,40 @@
+[package]
+name = "compose-webapp"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+description = "A Crossplane composition function."
+
+# The function image runs this binary, whatever the package is called.
+[[bin]]
+name = "function"
+path = "src/main.rs"
+
+[dependencies]
+function-sdk-rust = "0.3"
+tonic = "0.14"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+clap = { version = "4", features = ["derive", "env"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+# Only the API groups this function imports. ../../schemas/rust/Cargo.toml
+# names every feature; drop default-features = false to compile them all.
+crossplane-models = { path = "../../schemas/rust", default-features = false, features = [
+    "com-example-platform-v1alpha1",
+    "io-k8s-api-apps-v1",
+    "io-k8s-api-core-v1",
+    "io-k8s-apimachinery-pkg-apis-meta-v1",
+    "io-k8s-apimachinery-pkg-util-intstr",
+] }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+
+# Function images should be small.
+[profile.release]
+strip = true

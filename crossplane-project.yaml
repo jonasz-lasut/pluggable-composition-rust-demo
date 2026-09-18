@@ -1,0 +1,31 @@
+apiVersion: dev.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: rust-demo
+spec:
+  dependencies:
+  - k8s:
+      version: v1.37.0
+    type: k8s
+  - type: xpkg
+    xpkg:
+      apiVersion: pkg.crossplane.io/v1
+      kind: Function
+      package: xpkg.upbound.io/jonasz-lasut/function-wasm
+      version: '>=v0.5.0'
+  - type: xpkg
+    xpkg:
+      apiVersion: pkg.crossplane.io/v1
+      kind: Function
+      package: xpkg.crossplane.io/crossplane-contrib/function-auto-ready
+      version: '>=v0.0.0'
+  description: This is a demo Rust project.
+  license: Apache-2.0
+  maintainer: jonasz-lasut
+  readme: |
+    This is a demo Rust project.
+  repository: ghcr.io/jonasz-lasut/xp-rust-demo
+  schemas:
+    languages:
+    - rust
+  source: github.com/jonasz-lasut/xp-rust-demo

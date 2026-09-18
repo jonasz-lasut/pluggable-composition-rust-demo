@@ -1,0 +1,8 @@
+_output/
+.vscode/
+target/
+schemas/go/
+schemas/python/
+schemas/kcl/
+schemas/json/
+demo/plugins/*.wasm

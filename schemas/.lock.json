@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "fs://apis": "308b88e09c976a96e3453fc47d564365d894b54106d91bda9ba66fde1cb95049",
+    "k8s://v1.37.0": "v1.37.0",
+    "xpkg://xpkg.crossplane.io/crossplane-contrib/function-auto-ready:v0.7.0": "sha256:989e7bb4704859cbd6475cc61255b4b4ad53483ea43f3d2d1e4be5e3ff678869",
+    "xpkg://xpkg.upbound.io/jonasz-lasut/function-wasm:v0.5.0": "sha256:33529e9b793bbc385fa31c6f6856330a1fb0589c5ffb08d08e3966f944805ded"
+  }
+}
